@@ -1,0 +1,14 @@
+{
+  "name": "kellyhead-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Kelly Head restoration specialist and nature photography site",
+  "scripts": {
+    "start": "node scripts/start.js",
+    "build": "node scripts/build.js",
+    "test": "node scripts/test.js",
+    "release": "npm run build && npm run deploy && rm -rf build",
+    "deploy": "gh-pages --dotfiles -d build"
+  },
+  "devDependencies": { "gh-pages": "^6.3.0" }
+}
