@@ -30,6 +30,6 @@ npm install
 npm run release
 ```
 
-Then enable Pages in repository settings with **Deploy from a branch → gh-pages → / (root)**. The default URL should be `https://aaronik.github.io/kellyhead-site/`. If Kelly later has a custom domain, put its hostname in `public/CNAME` and configure DNS before deploying. No domain is assumed here.
+Then enable Pages in repository settings with **Deploy from a branch → gh-pages → / (root)**. The custom domain `kellyhead.com` is configured in `public/CNAME` and included in each build. Point the domain's DNS at GitHub Pages, confirm `kellyhead.com` in the Pages settings, and enable **Enforce HTTPS** once the certificate is ready.
 
 Original photos were supplied by Kelly by email; the site includes optimized WebP copies under `assets/photos/`. To add more, convert an original to WebP and add its relative path to `index.html`. `npm test` checks that local assets referenced by the page exist.
