@@ -10,8 +10,12 @@ const missingAssets = [...new Set(assets)].filter(file => !fs.existsSync(path.jo
 for (const file of ['favicon.svg', 'favicon.ico']) {
   if (!fs.existsSync(path.join(root, 'public', file))) missingAssets.push(`public/${file}`);
 }
-if (missing.length || missingAssets.length) {
-  console.error('Missing content:', missing, '\nMissing assets:', missingAssets);
+const photos = fs.readdirSync(path.join(root, 'assets/photos')).filter(file => file.endsWith('.webp')).sort();
+const gallery = [...html.matchAll(/data-full="assets\/photos\/([^"#]+)"/g)].map(match => match[1]).sort();
+const missingFromGallery = photos.filter(photo => !gallery.includes(photo));
+const duplicates = gallery.filter((photo, index) => gallery.indexOf(photo) !== index);
+if (missing.length || missingAssets.length || photos.length !== 29 || gallery.length !== 29 || missingFromGallery.length || duplicates.length) {
+  console.error('Missing content:', missing, '\nMissing assets:', missingAssets, '\nPhotos:', photos.length, '\nGallery entries:', gallery.length, '\nNot in gallery:', missingFromGallery, '\nDuplicates:', duplicates);
   process.exit(1);
 }
-console.log(`Passed: content, navigation, contact, and ${new Set(assets).size} local assets.`);
+console.log(`Passed: content, navigation, contact, and all ${gallery.length} Kelly photos in the gallery.`);

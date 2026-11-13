@@ -19,17 +19,6 @@ This uses the same GitHub Pages scheme as `shastasong_remake` and `duanemillermu
 npm run release     # build, deploy to gh-pages, remove local build/
 ```
 
-This environment did not permit Git write operations, so the repository and Pages branch still need to be created. From this directory, run:
+The repository is [`aaronik/kellyhead-site`](https://github.com/aaronik/kellyhead-site). Pages deploys from **gh-pages → / (root)**. The custom domain `kellyhead.com` is configured in `public/CNAME` and included in each build.
 
-```sh
-git init -b main
-git add .
-git commit -m "Build Kelly Head restoration site"
-gh repo create aaronik/kellyhead-site --public --source=. --remote=origin --push
-npm install
-npm run release
-```
-
-Then enable Pages in repository settings with **Deploy from a branch → gh-pages → / (root)**. The custom domain `kellyhead.com` is configured in `public/CNAME` and included in each build. Point the domain's DNS at GitHub Pages, confirm `kellyhead.com` in the Pages settings, and enable **Enforce HTTPS** once the certificate is ready.
-
-Original photos were supplied by Kelly by email; the site includes optimized WebP copies under `assets/photos/`. To add more, convert an original to WebP and add its relative path to `index.html`. `npm test` checks that local assets referenced by the page exist.
+All 29 original photo attachments from Kelly's emails are represented by optimized WebP copies in `assets/photos/` and each is included in the gallery. To add more, convert an original to WebP and add its relative path to `index.html`. `npm test` checks asset references and verifies that the complete 29-photo collection appears exactly once in the gallery.
